@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .bg-custom-dark {
+            background-color: #343a40;
+        }
+        .text-antiquewhite {
+            color: antiquewhite;
+        }
+        .content-wrapper {
+            padding: 2rem;
+            background-color: #343a40;
+            color: antiquewhite;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-light bg-dark justify-content-between text-light px-5" style="height: 100px;">
+        <a class="navbar-brand text-light">Event Management</a>
+        <form class="form-inline">
+            <a href="/eventinfo" class="btn btn-outline-danger my-2 my-sm-0 bg-danger text-white" style="margin-right:30px; position:relative;">Events Info</a>
+            <a href="/admin" class="btn btn-outline-primary my-2 my-sm-0 bg-primary text-white">Admin Login</a>
+        </form>
+    </nav>
+    <div class="text-center mt-3">
+        <img src="../static/images/login.jpg" alt="Login Image" style="width: 80%;">
+    </div>
+    <div class="container mt-5 content-wrapper">
+        <h1 class="text-center" style="font-family: Poppins;">Event Registration Form</h1>
+        <form method="post" class="mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="h4" for="firstname">First Name</label>
+                        <input name="FirstName" type="text" class="form-control border border-dark" id="firstname" placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="h4" for="lastname">Last Name</label>
+                        <input name="LastName" type="text" class="form-control border border-dark" id="lastname" placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="h4" for="mobileNumber">Mobile Number</label>
+                        <input name="MobileNumber" type="tel" class="form-control border border-dark" id="mobileNumber" placeholder="Mobile Number">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="h4" for="email">Email-id</label>
+                        <input name="Email" type="email" class="form-control border border-dark" id="email" placeholder="Email-id">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="h4" for="branch">Branch</label>
+                        <select name="Branch" class="form-control border border-dark" id="branch">
+                            <option selected>Select Branch</option>
+                            {% for branch in branchs %}
+                                <option value="{{ branch[0] }}">{{ branch[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="h4" for="event">Event</label>
+                        <select name="Event" class="form-control border border-dark" id="event">
+                            <option selected>Select Event</option>
+                            {% for event in events %}
+                                <option value="{{ event[0] }}">{{ event[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12 text-center">
+                    {% for error in errors %}
+                        <h5 class="text-warning">{{ error }}</h5>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row mt-4 mb-5">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary border border-dark">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
